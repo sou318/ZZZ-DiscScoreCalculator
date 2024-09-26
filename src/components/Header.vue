@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     .text {
         text-align: center;
         padding: 0.5vh;
