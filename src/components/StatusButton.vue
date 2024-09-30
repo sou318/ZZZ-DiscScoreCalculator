@@ -1,61 +1,67 @@
 <script setup lang="ts">
 import { type Ref, ref } from "vue";
 
-defineProps(["name"]);
-const discEnhanceCount = defineModel() as Ref<number>;
+defineProps([
+    "name", // 名称
+    "rate" // 上昇幅
+]);
+const discCount = defineModel() as Ref<number>;
 const count = ref(0);
 
+defineExpose({
+    count,
+});
 function countUp() {
-    if (discEnhanceCount.value < 4) {
-        discEnhanceCount.value++;
+    if (discCount.value < 4) {
+        discCount.value++;
         count.value++;
 }}
 
 function countDown() {
     if (0 < count.value) {
-        discEnhanceCount.value--;
+        discCount.value--;
         count.value--;
 }}
 </script>
 
 <template>
-    <div class="statusbutton">
+    <div
+    class="statusbutton"
+    @click="countUp"
+    @auxclick="countDown"
+    oncontextmenu="return false;"
+    >
         <div class="name">{{ name }}</div>
-        <div class="button" @click="countDown">-</div>
-        <div>{{ count }}</div>
-        <div class="button" @click="countUp">+</div>
+        <div class="count">+{{ count }}</div>
+        <div class="value">{{ count * rate }}</div>
     </div>
 </template>
 
 <style scoped lang="scss">
     .statusbutton {
+        width: 20vw;
         display: flex;
+        justify-content: space-between;
+
         background-color: #222;
         font-size: 2vh;
+        padding: 1vh;
+        transition: 100ms;
 
-        & * {
-            padding: 1vh;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-content: center;
+        &:hover {
+            cursor: pointer;
+            background-color: #333;
         }
     }
 
     .name {
-        width: 10vw;
+        width: 12vw;
     }
-
-    .button {
-        user-select: none;
-        text-align: center;
+    .count, .value {
+        text-align: right;
         width: 1vw;
-        aspect-ratio: 1;
-
-        &:hover {
-            cursor: pointer;
-            background-color: #fff1;
-        }
+    }
+    .count {
+        color: orange;
     }
 </style>
