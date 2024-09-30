@@ -47,7 +47,7 @@ function countDown() {
 
 <template>
     <div
-    class="statusbutton"
+    class="status"
     @click="countUp"
     @auxclick="countDown"
     oncontextmenu="return false;"
@@ -59,7 +59,7 @@ function countDown() {
 </template>
 
 <style scoped lang="scss">
-    .statusbutton {
+    .status {
         width: 20vw;
         display: flex;
         justify-content: space-between;

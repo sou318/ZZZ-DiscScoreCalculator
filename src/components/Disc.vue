@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps(["number"]);
 import { ref, useTemplateRef } from "vue";
-import StatusButton from "./StatusButton.vue";
+import Status from "./Status.vue";
 
 const discCount = ref(0);
 
@@ -56,10 +56,10 @@ defineExpose({
             <div>Disc {{ number }}</div>
             <div class="score">SCORE: {{ getDiscScore() }}</div>
         </div>
-        <StatusButton v-model="discCount" ref="ATK"      :rate=Rate_ATK        name="ATK%"/>
-        <StatusButton v-model="discCount" ref="CritRate" :rate=Rate_CritRate   name="CRIT Rate"/>
-        <StatusButton v-model="discCount" ref="CritDMG"  :rate=Rate_CritDMG    name="CRIT DMG%"/>
-        <StatusButton v-model="discCount" ref="AnoPro"   :rate=Rate_AnoPro     name="Anomaly Proficiency"/>
+        <Status v-model="discCount" ref="ATK"      :rate=Rate_ATK        name="ATK%"/>
+        <Status v-model="discCount" ref="CritRate" :rate=Rate_CritRate   name="CRIT Rate"/>
+        <Status v-model="discCount" ref="CritDMG"  :rate=Rate_CritDMG    name="CRIT DMG%"/>
+        <Status v-model="discCount" ref="AnoPro"   :rate=Rate_AnoPro     name="Anomaly Proficiency"/>
     </div>
 </template>
 
