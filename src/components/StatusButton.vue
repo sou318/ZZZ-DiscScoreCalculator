@@ -11,17 +11,26 @@ const count = ref(0);
 defineExpose({
     count,
 });
+
 function countUp() {
     if (discCount.value < 4) {
-        discCount.value++;
         count.value++;
-}}
+        // ステータス有効化時、discCountも上がらないように
+        if (count.value > 1) {
+            discCount.value++;
+        }
+    }
+}
 
 function countDown() {
     if (0 < count.value) {
-        discCount.value--;
         count.value--;
-}}
+        // ステータス無効化時、discCountが下がらないように
+        if (count.value > 0) {
+            discCount.value--;
+        }
+    }
+}
 </script>
 
 <template>
@@ -32,7 +41,7 @@ function countDown() {
     oncontextmenu="return false;"
     >
         <div class="name">{{ name }}</div>
-        <div class="count">+{{ count }}</div>
+        <div class="count">{{ count == 0 ? "-" : `+${count-1}` }}</div>
         <div class="value">{{ count * rate }}</div>
     </div>
 </template>
@@ -51,6 +60,10 @@ function countDown() {
         &:hover {
             cursor: pointer;
             background-color: #333;
+        }
+
+        &:active {
+            background-color: #2b2b2b;
         }
     }
 
