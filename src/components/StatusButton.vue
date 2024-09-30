@@ -1,21 +1,19 @@
 <script setup lang="ts">
-defineProps(["name"]);
-const emit = defineEmits(["getDiscCount"]);
-const count: Ref = defineModel();
-
 import { type Ref, ref } from "vue";
 
-function countUp() {
-    // get the total disc enhance count
-    const nowCount = ref(0);
-    emit("getDiscCount", nowCount);
+defineProps(["name"]);
+const discEnhanceCount = defineModel() as Ref<number>;
+const count = ref(0);
 
-    if (nowCount.value < 4) {
+function countUp() {
+    if (discEnhanceCount.value < 4) {
+        discEnhanceCount.value++;
         count.value++;
 }}
 
 function countDown() {
     if (0 < count.value) {
+        discEnhanceCount.value--;
         count.value--;
 }}
 </script>
