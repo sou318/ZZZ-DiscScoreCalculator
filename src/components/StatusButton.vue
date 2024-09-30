@@ -22,7 +22,10 @@ defineExpose({
 
 // ---- カウント ---- //
 function countUp() {
-    if (discCount.value < 4) {
+    if (
+        discCount.value < 4
+        || count.value == 0 // discCountが4でもステータスが有効化できるように
+    ) {
         count.value++;
         // ステータス有効化時、discCountも上がらないように
         if (count.value > 1) {
@@ -40,8 +43,6 @@ function countDown() {
         }
     }
 }
-
-
 </script>
 
 <template>

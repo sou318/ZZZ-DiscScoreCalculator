@@ -73,7 +73,7 @@ defineExpose({
     padding-left: 2px;
 
     .score {
-        width: 6rem;
+        width: 8vw;
     }
 }
 </style>
