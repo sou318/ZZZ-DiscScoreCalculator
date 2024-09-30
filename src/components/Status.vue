@@ -65,7 +65,7 @@ function countDown() {
         justify-content: space-between;
 
         background-color: #222;
-        font-size: 2vh;
+        font-size: 1.2rem;
         padding: 1vh;
         transition: 100ms;
 

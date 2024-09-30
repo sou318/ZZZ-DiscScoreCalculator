@@ -69,6 +69,7 @@ defineExpose({
     flex-direction: row;
     justify-content: space-between;
 
+    font-size: 1rem;
     background-color: #333;
     padding-left: 2px;
 

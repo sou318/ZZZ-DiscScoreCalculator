@@ -1,14 +1,15 @@
 <template>
-    <div class="text">
+    <div class="header">
         ZZZ - Disc Score Calculator
     </div>
 </template>
 
 <style scoped>
-    .text {
+    .header {
+        border-bottom: thin solid black;
         text-align: center;
         padding: 0.5vh;
-        font-size: 2.5vh;
+        font-size: 1.5rem;
         background-color: #fff1;
     }
 </style>
