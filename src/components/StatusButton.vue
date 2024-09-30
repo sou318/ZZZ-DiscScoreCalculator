@@ -1,17 +1,26 @@
 <script setup lang="ts">
 import { type Ref, ref } from "vue";
 
-defineProps([
+const props = defineProps([
     "name", // 名称
     "rate" // 上昇幅
 ]);
 const discCount = defineModel() as Ref<number>;
 const count = ref(0);
 
+function getValue() {
+    // parseFloatで少数がない場合、整数で返す
+    return parseFloat((count.value * props.rate).toFixed(1));
+}
+
 defineExpose({
     count,
+    getValue
 });
 
+
+
+// ---- カウント ---- //
 function countUp() {
     if (discCount.value < 4) {
         count.value++;
@@ -31,6 +40,8 @@ function countDown() {
         }
     }
 }
+
+
 </script>
 
 <template>
@@ -42,7 +53,7 @@ function countDown() {
     >
         <div class="name">{{ name }}</div>
         <div class="count">{{ count == 0 ? "-" : `+${count-1}` }}</div>
-        <div class="value">{{ count * rate }}</div>
+        <div class="value">{{ getValue() }}</div>
     </div>
 </template>
 
@@ -72,7 +83,7 @@ function countDown() {
     }
     .count, .value {
         text-align: right;
-        width: 1vw;
+        width: 2vw;
     }
     .count {
         color: orange;
