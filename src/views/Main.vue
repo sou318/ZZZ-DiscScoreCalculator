@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from "vue";
+import { useTemplateRef } from "vue";
 import Disc from "@/components/Disc.vue";
 import Result from "@/components/Result.vue";
 
@@ -11,15 +11,18 @@ const disc4 = useTemplateRef("disc4");
 const disc5 = useTemplateRef("disc5");
 const disc6 = useTemplateRef("disc6");
 
-function getAllDiscScore() {
-    // init
-    let ds1 = disc1.value?.getDiscScore() ?? 0;
-    let ds2 = disc2.value?.getDiscScore() ?? 0;
-    let ds3 = disc3.value?.getDiscScore() ?? 0;
-    let ds4 = disc4.value?.getDiscScore() ?? 0;
-    let ds5 = disc5.value?.getDiscScore() ?? 0;
-    let ds6 = disc6.value?.getDiscScore() ?? 0;
-    return ds1 + ds2 + ds3 + ds4 + ds5 + ds6;
+
+
+// ---- Get Methods ---- //
+enum Status {
+    ATK         = "getATK",
+    CritRate    = "getCritRate",
+    CritDMG     = "getCritDMG",
+    AnoPro      = "getAnoPro"
+}
+function getAllStatus(s: Status) {
+    let discs = [disc1, disc2, disc3, disc4, disc5, disc6];
+    return discs.reduce((sum, disc) => sum + (disc.value?.[s]() ?? 0), 0);
 }
 </script>
 
@@ -37,7 +40,7 @@ function getAllDiscScore() {
                 <Disc ref="disc6" number="6"/>
             </div>
         </div>
-        <Result :score=getAllDiscScore() />
+        <Result :score=getAllStatus(Status.ATK) />
     </div>
 </template>
 

@@ -17,6 +17,10 @@ const Ref_CritRate  = useTemplateRef("CritRate");
 const Ref_CritDMG   = useTemplateRef("CritDMG");
 const Ref_AnoPro    = useTemplateRef("AnoPro");
 
+function getATK     () { return Ref_ATK     .value?.getValue() ?? 0; }
+function getCritRate() { return Ref_CritRate.value?.getValue() ?? 0; }
+function getCritDMG () { return Ref_CritDMG .value?.getValue() ?? 0; }
+function getAnoPro  () { return Ref_AnoPro  .value?.getValue() ?? 0; }
 /**
  * このディスク単体のスコアを取得する物です。
  * ディスク全て合わせて計算する場合、使用しないでください。
@@ -46,7 +50,10 @@ function getDiscScore() {
 }
 
 defineExpose({
-    getDiscScore
+    getATK,
+    getCritRate,
+    getCritDMG,
+    getAnoPro
 });
 </script>
 
