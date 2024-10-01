@@ -13,9 +13,15 @@ function getValue() {
     return parseFloat((count.value * props.rate).toFixed(1));
 }
 
+function countReset() {
+    discCount.value -= count.value - 1;
+    count.value = 0;
+}
+
 defineExpose({
     count,
-    getValue
+    getValue,
+    countReset,
 });
 
 
@@ -48,6 +54,7 @@ function countDown() {
 <template>
     <div
     class="status"
+    @click.middle="countReset"
     @click="countUp"
     @auxclick="countDown"
     oncontextmenu="return false;"

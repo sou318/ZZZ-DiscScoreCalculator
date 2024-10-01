@@ -17,6 +17,9 @@ const Ref_CritRate  = useTemplateRef("CritRate");
 const Ref_CritDMG   = useTemplateRef("CritDMG");
 const Ref_AnoPro    = useTemplateRef("AnoPro");
 
+
+
+// --- Score and Rank --- //
 function getATK     () { return Ref_ATK     .value?.getValue() ?? 0; }
 function getCritRate() { return Ref_CritRate.value?.getValue() ?? 0; }
 function getCritDMG () { return Ref_CritDMG .value?.getValue() ?? 0; }
@@ -46,6 +49,17 @@ function getDiscRank(score: number) {
     return "X";
 }
 
+
+
+// --- other --- //
+function countReset() {
+    Ref_ATK     .value?.countReset();
+    Ref_CritRate.value?.countReset();
+    Ref_CritDMG .value?.countReset();
+    Ref_AnoPro  .value?.countReset();
+    discCount.value = 0;
+}
+
 defineExpose({
     getATK,
     getCritRate,
@@ -57,8 +71,8 @@ defineExpose({
 
 <template>
     <div class="disc">
-        <div class="number">
-            <div>Disc {{ number }}</div>
+        <div class="title">
+            <div class="number" @click="countReset">Disc {{ number }} - RESET</div>
             <div class="score">SCORE: {{ getDiscScore() }}</div>
             <div class="rank">{{ getDiscRank(getDiscScore()) }}</div>
         </div>
@@ -70,7 +84,7 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.number {
+.title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -78,7 +92,19 @@ defineExpose({
     font-size: 1rem;
     background-color: #333;
     padding-left: 2px;
+}
 
+.number {
+    transition: 100ms;
+
+    &:hover {
+        cursor: pointer;
+        color: #ff7070;
+    }
+
+    &:active {
+        color: red;
+    }
 }
 
 .score {
