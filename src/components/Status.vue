@@ -23,7 +23,7 @@ defineExpose({
 // ---- カウント ---- //
 function countUp() {
     if (
-        discCount.value < 4
+        discCount.value < 5 // 初期サブステが4つある場合5回強化できる
         || count.value == 0 // discCountが4でもステータスが有効化できるように
     ) {
         count.value++;

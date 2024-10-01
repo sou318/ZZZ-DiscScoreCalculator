@@ -32,16 +32,17 @@ function getDiscScore() {
     let AnoPro      = Ref_AnoPro    .value?.getValue() ?? 0; // 異常マスタリー
     result += ATK       * 5;
     result += CritRate  * 6;
-    result += CritDMG   * 2.75;
-    result += AnoPro    * 1;
+    result += CritDMG   * 2.9;
+    result += AnoPro    * 1.1111;
     return parseFloat(result.toFixed(2));
 }
 
 function getDiscRank(score: number) {
-    if (score > 100) return "SS";
-    if (score >  90) return "S";
-    if (score >  80) return "A";
-    if (score >  60) return "B";
+    if (score >= 120) return "SSS";
+    if (score >= 110) return "SS";
+    if (score >= 100) return "S";
+    if (score >=  80) return "A";
+    if (score >=  60) return "B";
     return "X";
 }
 
@@ -87,6 +88,6 @@ defineExpose({
 
 .rank {
     text-align: center;
-    width: 1.25rem;
+    width: 2rem;
 }
 </style>
