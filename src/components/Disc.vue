@@ -21,10 +21,7 @@ function getATK     () { return Ref_ATK     .value?.getValue() ?? 0; }
 function getCritRate() { return Ref_CritRate.value?.getValue() ?? 0; }
 function getCritDMG () { return Ref_CritDMG .value?.getValue() ?? 0; }
 function getAnoPro  () { return Ref_AnoPro  .value?.getValue() ?? 0; }
-/**
- * このディスク単体のスコアを取得する物です。
- * ディスク全て合わせて計算する場合、使用しないでください。
- */
+
 function getDiscScore() {
     let result = 0;
 
@@ -33,27 +30,27 @@ function getDiscScore() {
     let CritRate    = Ref_CritRate  .value?.getValue() ?? 0; // 会心率
     let CritDMG     = Ref_CritDMG   .value?.getValue() ?? 0; // 会心ダメージ
     let AnoPro      = Ref_AnoPro    .value?.getValue() ?? 0; // 異常マスタリー
-    // 基礎値
-    CritRate += 5;
-    CritDMG  += 50;
-
-    // ATK
-    result += ATK;
-
-    // CritDmg
-    result += CritDMG * (CritRate / 100) - 2.5;
-
-    // AnoPro
-    result += AnoPro;
-
+    result += ATK       * 5;
+    result += CritRate  * 6;
+    result += CritDMG   * 2.75;
+    result += AnoPro    * 1;
     return parseFloat(result.toFixed(2));
+}
+
+function getDiscRank(score: number) {
+    if (score > 100) return "SS";
+    if (score >  90) return "S";
+    if (score >  80) return "A";
+    if (score >  60) return "B";
+    return "X";
 }
 
 defineExpose({
     getATK,
     getCritRate,
     getCritDMG,
-    getAnoPro
+    getAnoPro,
+    getDiscScore
 });
 </script>
 
@@ -62,6 +59,7 @@ defineExpose({
         <div class="number">
             <div>Disc {{ number }}</div>
             <div class="score">SCORE: {{ getDiscScore() }}</div>
+            <div class="rank">{{ getDiscRank(getDiscScore()) }}</div>
         </div>
         <Status v-model="discCount" ref="ATK"      :rate=Rate_ATK        name="ATK%"/>
         <Status v-model="discCount" ref="CritRate" :rate=Rate_CritRate   name="CRIT Rate"/>
@@ -80,8 +78,15 @@ defineExpose({
     background-color: #333;
     padding-left: 2px;
 
-    .score {
-        width: 8vw;
-    }
+}
+
+.score {
+    width: 6.9vw;
+    margin-left: auto;
+}
+
+.rank {
+    text-align: center;
+    width: 1.25rem;
 }
 </style>
