@@ -99,11 +99,11 @@ defineExpose({
 
     &:hover {
         cursor: pointer;
-        color: #ff7070;
+        color: #ffb0b0;
     }
 
     &:active {
-        color: red;
+        color: #ff4040;
     }
 }
 

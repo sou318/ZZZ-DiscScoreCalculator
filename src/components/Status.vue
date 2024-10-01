@@ -57,7 +57,6 @@ function countDown() {
     @click.middle="countReset"
     @click="countUp"
     @auxclick="countDown"
-    oncontextmenu="return false;"
     >
         <div class="name">{{ name }}</div>
         <div class="count">{{ count == 0 ? "-" : `+${count-1}` }}</div>
