@@ -66,7 +66,6 @@ function countDown() {
 
 <style scoped lang="scss">
     .status {
-        width: 20vw;
         display: flex;
         justify-content: space-between;
 
@@ -86,11 +85,11 @@ function countDown() {
     }
 
     .name {
-        width: 12vw;
+        width: 75%;
     }
     .count, .value {
         text-align: right;
-        width: 2vw;
+        width: 25%;
     }
     .count {
         color: orange;

@@ -86,17 +86,18 @@ defineExpose({
 
 <style scoped lang="scss">
 .title {
+    min-width: 20vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
     font-size: 1rem;
     background-color: #333;
-    padding-left: 2px;
 }
 
 .number {
     transition: 100ms;
+    padding-left: 2px;
 
     &:hover {
         cursor: pointer;
@@ -109,12 +110,14 @@ defineExpose({
 }
 
 .score {
-    width: 6.9vw;
     margin-left: auto;
+    width: 6rem;
+    margin-right: 0.5vw;
 }
 
 .rank {
-    text-align: center;
-    width: 2rem;
+    padding-right: 5px;
+    text-align: right;
+    width: 10%;
 }
 </style>
