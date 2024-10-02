@@ -10,19 +10,20 @@ const disc3 = useTemplateRef("disc3");
 const disc4 = useTemplateRef("disc4");
 const disc5 = useTemplateRef("disc5");
 const disc6 = useTemplateRef("disc6");
+const discs = [disc1, disc2, disc3, disc4, disc5, disc6];
 
 
 
 // ---- Get Methods ---- //
-enum Status {
+enum DiscMethod {
     ATK         = "getATK",
     CritRate    = "getCritRate",
     CritDMG     = "getCritDMG",
-    AnoPro      = "getAnoPro"
+    AnoPro      = "getAnoPro",
+    Score       = "getDiscScore",
 }
-function getAllStatus(s: Status) {
-    let discs = [disc1, disc2, disc3, disc4, disc5, disc6];
-    return discs.reduce((sum, disc) => sum + (disc.value?.[s]() ?? 0), 0);
+function getAllStatus(method: DiscMethod) {
+    return discs.reduce((sum, disc) => sum + (disc.value?.[method]() ?? 0), 0);
 }
 </script>
 
@@ -40,7 +41,7 @@ function getAllStatus(s: Status) {
                 <Disc ref="disc6" number="6"/>
             </div>
         </div>
-        <Result :score=getAllStatus(Status.ATK) />
+        <Result :score=getAllStatus(DiscMethod.Score) />
     </div>
 </template>
 
