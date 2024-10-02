@@ -29,23 +29,23 @@ function getDiscScore() {
     let result = 0;
 
     // init
-    let ATK         = Ref_ATK       .value?.getValue() ?? 0; // 攻撃力
-    let CritRate    = Ref_CritRate  .value?.getValue() ?? 0; // 会心率
-    let CritDMG     = Ref_CritDMG   .value?.getValue() ?? 0; // 会心ダメージ
-    let AnoPro      = Ref_AnoPro    .value?.getValue() ?? 0; // 異常マスタリー
-    result += ATK       * 5;
-    result += CritRate  * 6;
-    result += CritDMG   * 2.9;
-    result += AnoPro    * 1.1111;
+    let ATK         = Ref_ATK       .value?.count ?? 0; // 攻撃力
+    let CritRate    = Ref_CritRate  .value?.count ?? 0; // 会心率
+    let CritDMG     = Ref_CritDMG   .value?.count ?? 0; // 会心ダメージ
+    let AnoPro      = Ref_AnoPro    .value?.count ?? 0; // 異常マスタリー
+    result += ATK       * 12;
+    result += CritRate  * 14;
+    result += CritDMG   * 13;
+    result += AnoPro    * 11;
     return parseFloat(result.toFixed(2));
 }
 
 function getDiscRank(score: number) {
-    if (score >= 120) return "SSS";
-    if (score >= 110) return "SS";
-    if (score >= 100) return "S";
+    if (score >= 110) return "SSS";
+    if (score >= 100) return "SS";
+    if (score >=  90) return "S";
     if (score >=  80) return "A";
-    if (score >=  60) return "B";
+    if (score >=  50) return "B";
     return "X";
 }
 
@@ -65,7 +65,8 @@ defineExpose({
     getCritRate,
     getCritDMG,
     getAnoPro,
-    getDiscScore
+    getDiscScore,
+    countReset,
 });
 </script>
 
