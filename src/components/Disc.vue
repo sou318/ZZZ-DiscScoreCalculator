@@ -73,7 +73,7 @@ defineExpose({
 <template>
     <div class="disc">
         <div class="title">
-            <div class="number" @click="countReset">Disc {{ number }} - RESET</div>
+            <div class="number" @click="countReset">Disc {{ number }}</div>
             <div class="score">SCORE: {{ getDiscScore() }}</div>
             <div class="rank">{{ getDiscRank(getDiscScore()) }}</div>
         </div>
@@ -100,12 +100,19 @@ defineExpose({
     padding-left: 2px;
 
     &:hover {
+        color: transparent;
         cursor: pointer;
-        color: #ffb0b0;
+
+        &::before {
+            color: red;
+        }
     }
 
-    &:active {
-        color: #ff4040;
+    &::before {
+        color: transparent;
+        position: absolute;
+        transition: 100ms;
+        content: "RESET";
     }
 }
 
