@@ -40,9 +40,9 @@ defineExpose({
             <Disc ref="disc3" number="3"/>
         </div>
         <div class="discColumn">
-            <Disc ref="disc4" number="4"/>
-            <Disc ref="disc5" number="5"/>
             <Disc ref="disc6" number="6"/>
+            <Disc ref="disc5" number="5"/>
+            <Disc ref="disc4" number="4"/>
         </div>
     </div>
 </template>
